@@ -1,0 +1,25 @@
+{
+  "name": "lights-server",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "DEBUG=true nodemon index.js"
+  },
+  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mgibeau/applights-sdk"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "applights-sdk": "^1.0.0",
+    "express": "^4.16.2",
+    "node-persist": "^2.1.0",
+    "serve-favicon": "^2.4.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.5"
+  }
+}
