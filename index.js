@@ -62,6 +62,28 @@ api.get('/off', async (req, res, next) => {
   }
 })
 
+api.get('/color', async (req, res, next) => {
+  const currentColor = await storage.getItem('color')
+
+  res.send(currentColor)
+})
+
+api.get('/color/:hex', async (req, res, next) => {
+  try {
+    const color = await strings.getThemeFromHex(req.params.hex)
+    const response = await strings.setTheme(color.buffer)
+    console.log('FROM:', req.params.hex, ' setting theme:', response)
+
+    if (color && response) {
+      console.log('saving', color.value.substring(1))
+      storage.setItem('color', color.value.substring(1))
+    }
+    res.send({ ...color, ...response })
+  } catch (err) {
+    next(err)
+  }
+})
+
 api.get('/status', async (req, res, next) => {
   const status = storage.getItem('status')
   res.send(status === 'on' ? '1' : '0')
