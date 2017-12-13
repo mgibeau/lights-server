@@ -5,7 +5,6 @@ const sdk = require('applights-sdk')
 const version = require('./package').version
 
 const EFFECTS = sdk.effects
-const THEMES = sdk.themes
 
 const DISCONNECT_TIMEOUT = process.env.TIMEOUT || 10 * 1000
 
@@ -31,12 +30,14 @@ api.get('/info', (req, res) => {
   })
 })
 
-api.get('/themes', (req, res) => {
-  res.send(Object.keys(THEMES))
-})
-
 api.get('/effects', (req, res) => {
   res.send(Object.keys(EFFECTS))
+})
+
+api.get('/effects/:id', (req, res, next) => {
+  let theme = EFFECTS[req.params.id]
+  if (typeof theme !== 'undefined') strings.setTheme(theme).then((all) => res.send(all)).catch(next)
+  else res.send({ error: `Invalid effect '${req.params.id}'`})
 })
 
 api.get('/on', async (req, res, next) => {
