@@ -14,7 +14,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "applights-sdk": "^1.0.0",
+    "applights-sdk": "^1.0.1",
     "express": "^4.16.2",
     "node-persist": "^2.1.0",
     "serve-favicon": "^2.4.5"
